@@ -24,7 +24,11 @@ const columns = [
   },
   { title: 'B', dataIndex: 'key', width: 200 },
   { title: 'C', dataIndex: 'key' },
-  { title: 'D', dataIndex: 'key', width: 200 },
+  {
+    title: 'D',
+    dataIndex: 'key',
+    width: 200,
+  },
   { title: '1', dataIndex: 'key', width: 200 },
   { title: '2', dataIndex: 'key', width: 200 },
   { title: '3', dataIndex: 'key', width: 200 },
@@ -44,7 +48,7 @@ function App() {
       selectedRows={selectedRows}
       columns={columns}
       dataSource={data}
-      scroll={{ y: 300, x: 1280 }}
+      scroll={{ y: 300 }}
       onSelect={(e: any) => {
         console.log(e, 'kll');
         setSelectedRows(e);

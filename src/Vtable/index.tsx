@@ -4,6 +4,11 @@ import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import { Table, Checkbox } from 'antd';
 import './index.less';
+interface defaultProps {
+  selectedRows?: Array<Object>;
+  columns: Array<Object>;
+  dataSource?: Array<Object>;
+}
 function VirtualTable(props: any) {
   const { columns, scroll, selectable, selectedRows, dataSource } = props;
   const [tableWidth, setTableWidth] = useState(0);
