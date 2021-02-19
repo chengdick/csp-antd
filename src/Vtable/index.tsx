@@ -14,7 +14,7 @@ function VirtualTable(props: any) {
     columns,
     scroll,
     selectable,
-    selectedRows,
+    selectedRows = [],
     dataSource,
     bordered,
   } = props;
@@ -37,7 +37,10 @@ function VirtualTable(props: any) {
       width:
         yesWidth > tableWidth
           ? 200
-          : Math.floor((tableWidth - yesWidth - 80) / widthColumnCount),
+          : Math.floor(
+              (tableWidth - yesWidth - (selectable ? 80 : 0)) /
+                widthColumnCount,
+            ),
     };
   });
 
