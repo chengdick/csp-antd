@@ -67,7 +67,6 @@ const columns = [
     title: 'D',
     dataIndex: 'key',
     width: 200,
-    sorter: true,
   },
   { title: '1', dataIndex: 'key', width: 200 },
   { title: '2', dataIndex: 'key', width: 200 },
