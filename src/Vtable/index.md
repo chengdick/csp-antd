@@ -28,6 +28,7 @@ const columns = [
     title: 'D',
     dataIndex: 'key',
     width: 200,
+    sorter: true,
   },
   { title: '1', dataIndex: 'key', width: 200 },
   { title: '2', dataIndex: 'key', width: 200 },
@@ -42,13 +43,14 @@ const columns = [
 const data = Array.from({ length: 100000 }, (_, key) => ({ key }));
 function App() {
   const [selectedRows, setSelectedRows] = useState([]);
-
+  const handleTableChange = (pagination, filters, sorter) => {};
   return (
     <Vtable
       selectedRows={selectedRows}
       columns={columns}
       dataSource={data}
       scroll={{ y: 300 }}
+      onChange={handleTableChange}
       onSelect={(e: any) => {
         console.log(e, 'kll');
         setSelectedRows(e);

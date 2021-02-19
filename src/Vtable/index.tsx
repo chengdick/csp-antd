@@ -4,14 +4,22 @@ import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import { Table, Checkbox } from 'antd';
 import './index.less';
-interface defaultProps {
-  selectedRows?: Array<Object>;
-  columns: Array<Object>;
-  dataSource?: Array<Object>;
-}
+// interface defaultProps {
+//   selectedRows?: Array<Object>;
+//   columns: Array<Object>;
+//   dataSource?: Array<Object>;
+// }
 function VirtualTable(props: any) {
-  const { columns, scroll, selectable, selectedRows, dataSource } = props;
+  const {
+    columns,
+    scroll,
+    selectable,
+    selectedRows,
+    dataSource,
+    bordered,
+  } = props;
   const [tableWidth, setTableWidth] = useState(0);
+  console.log(bordered, '===');
   const yesWidth = columns!
     .map(({ width }: any) => width)
     .filter(Boolean)
@@ -78,19 +86,6 @@ function VirtualTable(props: any) {
   }
 
   const gridRef = useRef<any>();
-  const [connectObject] = useState<any>(() => {
-    const obj = {};
-    Object.defineProperty(obj, 'scrollLeft', {
-      get: () => null,
-      set: (scrollLeft: number) => {
-        if (gridRef.current) {
-          gridRef.current.scrollTo({ scrollLeft });
-        }
-      },
-    });
-
-    return obj;
-  });
 
   const resetVirtualGrid = () => {
     gridRef.current.resetAfterIndices({
@@ -105,7 +100,6 @@ function VirtualTable(props: any) {
     rawData: object[],
     { scrollbarSize, ref, onScroll }: any,
   ) => {
-    ref.current = connectObject;
     const totalHeight = rawData.length * 54;
     return (
       <Grid
@@ -138,6 +132,7 @@ function VirtualTable(props: any) {
           <div
             className={classNames('virtual-table-cell', {
               'virtual-table-cell-last': columnIndex === lastcolumns.length - 1,
+              bordered: Boolean(bordered),
             })}
             style={style}
           >
